@@ -1,11 +1,15 @@
 import { Outlet } from "react-router-dom";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 export function Layout() {
   return (
-    <div>
+    <SidebarProvider>
+      <AppSidebar />
       <main>
+        <SidebarTrigger />
         <Outlet />
       </main>
-    </div>
+    </SidebarProvider>
   );
 }
