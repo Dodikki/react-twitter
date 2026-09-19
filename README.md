@@ -71,37 +71,27 @@ export default defineConfig([
   },
 ])
 ```
-import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
+import express from 'express'
 
-export default function Home() {
- return (
-  <div>
-   <div className='m-4 text-[22px]'>
-    <div className='flex justify-between'>
-     <h2 className='font-bold'>Все заметки</h2>
-     <Button>
-      <Plus />
-      Новая заметка
-     </Button>
-    </div>
-    <div className='flex flex-col gap-2 mt-2'>
-     <div className='shadow-md p-3 border rounded-md'>
-      <h3 className='text-[20px] font-semibold'>Планы на неделю</h3>
-      <p className='text-[14px] text-gray-500 mt-1'>
-       1. Завершить проект 2. Поход в спортзал 3. Встреча...
-      </p>
-      <div className='flex gap-1 mt-1'>
-       <span className='text-[14px] bg-amber-100 text-orange-900 px-2 rounded-md'>
-        Работа
-       </span>
-       <span className='text-[14px] bg-red-100 text-red-900 px-2 rounded-md'>
-        Личное
-       </span>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div>
- )
-}
+const app = express()
+
+let notes = [
+ {
+  id: 1,
+  title: 'Первая заметка',
+  text: 'Текст первой заметки',
+ },
+ {
+  id: 2,
+  title: 'Вторая заметка',
+  text: 'Текст второй заметки',
+ },
+]
+
+app.get('/api/notes', (_, res) => {
+ res.status(200).json(notes)
+})
+
+app.listen(3000, () => {
+ console.log(`Server started at 3000 PORT`)
+})
